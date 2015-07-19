@@ -50,7 +50,7 @@ public class WordCount {
 		
 		args = new String[]{
 				"hdfs://hadoop-ehp.hyman.com:8020/user/ehp/mapred/wordcount/input",
-				"hdfs://hadoop-ehp.hyman.com:8020/user/ehp/mapred/wordcount/output4"
+				"hdfs://hadoop-ehp.hyman.com:8020/user/ehp/mapred/wordcount/output"
 				};
 		
 		Configuration conf = new Configuration();

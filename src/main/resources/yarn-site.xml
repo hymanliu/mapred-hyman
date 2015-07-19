@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<configuration>
+	<property>
+		<name>yarn.resourcemanager.hostname</name>
+		<value>hadoop-ehp.hyman.com</value>
+	</property>
+ 
+	<property>
+		<name>yarn.nodemanager.aux-services</name>
+		<value>mapreduce_shuffle</value>
+	</property>
+	
+	<property>
+		<name>yarn.log-aggregation-enable</name>
+		<value>true</value>
+	</property>
+
+	<property>
+		<name>yarn.log-aggregation.retain-seconds</name>
+		<value>604800</value>
+	</property>
+	
+	<!--
+	<property>
+		<name>yarn.app.mapreduce.am.env</name>
+		<value>LD_LIBRARY_PATH=$HADOOP_HOME/lib/native</value>
+	</property>
+	-->
+	
+</configuration>
