@@ -27,7 +27,6 @@ public class Join {
 		private String deptNo ="";
 		private String deptName="";
 		private String loc="";
-		
 		private String empNo="";
 		private String empName="";
 		private String job="";
@@ -35,115 +34,10 @@ public class Join {
 		private String date="";
 		private String sal="";
 		private String comm="";
-
+		//1:emp,2:dept
 		private int flag;
 		
 		public EmployeeWritable(){}
-		public String getDeptNo() {
-			return deptNo;
-		}
-
-
-		public void setDeptNo(String deptNo) {
-			this.deptNo = deptNo;
-		}
-
-
-		public String getDeptName() {
-			return deptName;
-		}
-
-
-		public void setDeptName(String deptName) {
-			this.deptName = deptName;
-		}
-
-
-		public String getLoc() {
-			return loc;
-		}
-
-
-		public void setLoc(String loc) {
-			this.loc = loc;
-		}
-
-
-		public String getEmpNo() {
-			return empNo;
-		}
-
-
-		public void setEmpNo(String empNo) {
-			this.empNo = empNo;
-		}
-
-
-		public String getEmpName() {
-			return empName;
-		}
-
-
-		public void setEmpName(String empName) {
-			this.empName = empName;
-		}
-
-
-		public String getJob() {
-			return job;
-		}
-
-
-		public void setJob(String job) {
-			this.job = job;
-		}
-
-
-		public String getLeader() {
-			return leader;
-		}
-
-
-		public void setLeader(String leader) {
-			this.leader = leader;
-		}
-
-
-		public String getDate() {
-			return date;
-		}
-
-
-		public void setDate(String date) {
-			this.date = date;
-		}
-
-
-		public String getSal() {
-			return sal;
-		}
-
-
-		public void setSal(String sal) {
-			this.sal = sal;
-		}
-
-
-		public String getComm() {
-			return comm;
-		}
-
-
-		public void setComm(String comm) {
-			this.comm = comm;
-		}
-
-
-		public void setFlag(int flag) {
-			this.flag = flag;
-		}
-
-
 		public EmployeeWritable(String deptNo,String deptName,String loc){
 			this.deptNo = deptNo;
 			this.deptName = deptName;
@@ -161,6 +55,28 @@ public class Join {
 			this.comm = comm;
 			this.deptNo = deptNo;
 			this.flag = 1;
+		}
+		
+		
+		public EmployeeWritable(EmployeeWritable emp){
+			
+			if(emp.flag==1){
+				this.empNo=emp.empNo;
+				this.empName=emp.empName;
+				this.job=emp.job;
+				this.leader=emp.leader;
+				this.date=emp.date;
+				this.sal=emp.sal;
+				this.comm=emp.comm;
+				this.deptNo = emp.deptNo;
+				this.flag = emp.flag;
+			}
+			else{
+				this.deptNo = emp.deptNo;
+				this.flag = emp.flag;
+				this.deptName = emp.deptName;
+				this.loc = emp.loc;
+			}
 		}
 		
 		public void setDept(EmployeeWritable dept){
@@ -243,10 +159,10 @@ public class Join {
 			
 			for(EmployeeWritable emp : values){
 				if(emp.getFlag()==2){
-					dept = emp;
+					dept = new EmployeeWritable(emp);
 				}
 				else{
-					empList.add(emp);
+					empList.add(new EmployeeWritable(emp));
 				}
 			}
 			
