@@ -1,4 +1,4 @@
-package com.hyman.ehp.mapred.hbase;
+package com.hyman.mapred.hbase;
 
 import java.io.IOException;
 

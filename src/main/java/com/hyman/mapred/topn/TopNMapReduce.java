@@ -1,4 +1,4 @@
-package com.hyman.ehp.mapred.exp01;
+package com.hyman.mapred.topn;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -17,7 +17,9 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
 
-public class TopN {
+public class TopNMapReduce {
+	
+	static final String HOST ="hdfs://hadoop110.hyman.com:8020";
 	
 	static class TopNMapper extends Mapper<LongWritable,Text,IntWritable,NullWritable>{
 
@@ -93,8 +95,8 @@ public class TopN {
 		
 		if(args.length==0){
 			args = new String[]{
-				"hdfs://hadoop-ehp.hyman.com:8020/user/ehp/mapred/topn/input",
-				"hdfs://hadoop-ehp.hyman.com:8020/user/ehp/mapred/topn/output",
+				HOST+"/user/ehp/mapred/topn/input",
+				HOST+"/user/ehp/mapred/topn/output",
 				"5"
 			};
 		}
@@ -112,7 +114,7 @@ public class TopN {
 		
 		Job job = Job.getInstance(conf);
 		job.setJobName("TopN");
-		job.setJarByClass(TopN.class);
+		job.setJarByClass(TopNMapReduce.class);
 		job.setMapperClass(TopNMapper.class);
 		
 		job.setReducerClass(TopNReducer.class);

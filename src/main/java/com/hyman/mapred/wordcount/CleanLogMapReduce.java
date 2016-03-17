@@ -1,4 +1,4 @@
-package com.hyman.ehp.mapreduce;
+package com.hyman.mapred.wordcount;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -18,7 +18,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
 
-public class CleanLog {
+public class CleanLogMapReduce {
 	
 	public static class MyMapper extends Mapper<LongWritable, Text, Text, NullWritable>{
 		
@@ -76,7 +76,7 @@ public class CleanLog {
 
 		Job job = Job.getInstance(conf);
 		job.setJobName("cleanLog");
-		job.setJarByClass(CleanLog.class);
+		job.setJarByClass(CleanLogMapReduce.class);
 		job.setMapperClass(MyMapper.class);
 		
 		//job.setReducerClass(Reducer.class);

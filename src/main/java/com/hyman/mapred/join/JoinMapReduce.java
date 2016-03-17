@@ -1,4 +1,4 @@
-package com.hyman.ehp.mapred.exp02;
+package com.hyman.mapred.join;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -19,8 +19,9 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
-public class Join {
+public class JoinMapReduce {
 	
+	static final String HOST ="hdfs://hadoop110.hyman.com:8020";
 	
 	static class EmployeeWritable implements Writable{
 		
@@ -179,13 +180,13 @@ public class Join {
 		
 		if(args.length==0){
 			args = new String[]{
-				"hdfs://hadoop-ehp.hyman.com:8020/user/ehp/mapred/join/input",
-				"hdfs://hadoop-ehp.hyman.com:8020/user/ehp/mapred/join/output",
+				HOST+"/user/ehp/mapred/join/input",
+				HOST+"/user/ehp/mapred/join/output",
 			};
 		}
 		
 		if (args.length < 2) {
-			System.err.println("Usage: com.hyman.ehp.mapred.exp02.join inPath outPath");
+			System.err.println("Usage: com.hyman.ehp.mapred.join.JoinMapReduce inPath outPath");
 			System.exit(2);
 		}
 		
@@ -195,7 +196,7 @@ public class Join {
 
 		Job job = Job.getInstance(conf);
 		job.setJobName("Join");
-		job.setJarByClass(Join.class);
+		job.setJarByClass(JoinMapReduce.class);
 		job.setMapperClass(JoinMapper.class);
 		
 		job.setReducerClass(JoinReducer.class);

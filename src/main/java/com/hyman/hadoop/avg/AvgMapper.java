@@ -1,4 +1,4 @@
-package com.hyman.hadoop.one;
+package com.hyman.hadoop.avg;
 
 import java.io.IOException;
 

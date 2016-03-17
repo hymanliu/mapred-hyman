@@ -1,4 +1,4 @@
-package com.hyman.ehp.mapreduce;
+package com.hyman.mapred.wordcount;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
@@ -14,7 +14,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
-public class WordCount {
+public class WordCountMapReduce {
 	
 	public static class TokenizerMapper extends
 			Mapper<Object, Text, Text, IntWritable> {
@@ -63,7 +63,7 @@ public class WordCount {
 
 		Job job = Job.getInstance(conf);
 		job.setJobName("word count");
-		job.setJarByClass(WordCount.class);
+		job.setJarByClass(WordCountMapReduce.class);
 		job.setMapperClass(TokenizerMapper.class);
 		job.setCombinerClass(IntSumReducer.class);
 		job.setReducerClass(IntSumReducer.class);

@@ -1,4 +1,4 @@
-package com.hyman.hadoop.one;
+package com.hyman.hadoop.avg;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
