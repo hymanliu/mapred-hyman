@@ -1,0 +1,7 @@
+Hyman|M|20
+eric|M|22
+betty|F|20
+sophia|F|23
+amy|F|23
+sunny|M|30
+alam|M|25
