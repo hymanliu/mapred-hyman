@@ -33,7 +33,7 @@ public class AnalysisMapReduce extends Configured implements Tool{
 			
 			String line = value.toString().trim();
 			String[] arr = line.split("\t");
-			if("1".endsWith(arr[3]) && "2".equals(arr[4])){
+			if("1".equals(arr[3]) && "2".equals(arr[4])){
 				context.write(value, NullWritable.get());
 			}
 		}

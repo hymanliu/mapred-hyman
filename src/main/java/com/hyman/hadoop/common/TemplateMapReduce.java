@@ -18,6 +18,8 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.Tool;
 
 public class TemplateMapReduce extends Configured implements Tool {
+	
+	static final String HOST ="hdfs://hadoop110.hyman.com:8020";
 
 	static class TemplateMapper extends Mapper<LongWritable, Text, Text, IntWritable>{
 
@@ -70,8 +72,7 @@ public class TemplateMapReduce extends Configured implements Tool {
 		Path path = new Path(args[1]);
 		if(fs.exists(path))
 		{
-			//output file path exists.
-			System.exit(1);
+			fs.delete(path, true);
 		}
 		FileOutputFormat.setOutputPath(job, path);
 		
@@ -79,5 +80,15 @@ public class TemplateMapReduce extends Configured implements Tool {
 	}
 
 
-	public static void main(String [] args){}
+	public static void main(String [] args) throws Exception{
+		
+		if(args.length==0){
+			args = new String[]{
+				HOST+"/user/ehp/mapred/template/input",
+				HOST+"/user/ehp/mapred/template/output"
+			};
+		}
+		
+		System.exit(new TemplateMapReduce().run(args));
+	}
 }
