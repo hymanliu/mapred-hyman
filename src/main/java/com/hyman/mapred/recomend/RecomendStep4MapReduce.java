@@ -1,9 +1,7 @@
 package com.hyman.mapred.recomend;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -130,11 +128,6 @@ public class RecomendStep4MapReduce extends Configured implements Tool {
 		job.setMapperClass(RecomendMapper.class);
 		job.setMapOutputKeyClass(Text.class);
 		job.setMapOutputValueClass(Text.class);
-		
-		//job.setPartitionerClass(HashPartitioner.class);
-		//job.setCombinerClass(null);
-		//job.setSortComparatorClass(cls);
-		//job.setGroupingComparatorClass(cls);
 		
 		job.setNumReduceTasks(1);
 		

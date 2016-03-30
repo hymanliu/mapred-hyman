@@ -99,11 +99,6 @@ public class RecomendStep3MapReduce extends Configured implements Tool {
 		job.setMapOutputKeyClass(Text.class);
 		job.setMapOutputValueClass(Text.class);
 		
-		//job.setPartitionerClass(HashPartitioner.class);
-		//job.setCombinerClass(null);
-		//job.setSortComparatorClass(cls);
-		//job.setGroupingComparatorClass(cls);
-		
 		job.setNumReduceTasks(1);
 		
 		job.setReducerClass(RecomendReducer.class);
