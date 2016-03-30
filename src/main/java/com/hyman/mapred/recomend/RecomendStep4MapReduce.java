@@ -40,7 +40,7 @@ public class RecomendStep4MapReduce extends Configured implements Tool {
 			context.write(new Text(arr[0]),new Text(arr[1]));
 		}
 	}
-	//uid1  pid4:1|pid4:1|pid4:1|pid4:1
+	//pid  pid4:1|pid4:1|pid4:1|pid4:1
 	static class RecomendReducer extends Reducer<Text, Text, Text, Text>{
 
 		@Override
@@ -51,6 +51,7 @@ public class RecomendStep4MapReduce extends Configured implements Tool {
 				String[] arr = value.toString().split("\\|");
 				for(String view : arr){
 					String[] v = view.split(":");
+					if(v[0].equals(key.toString())) continue;
 					Integer times = viewMap.get(v[0]);
 					times = (times==null) ? Integer.parseInt(v[1]):times + Integer.parseInt(v[1]);
 					viewMap.put(v[0], times);
