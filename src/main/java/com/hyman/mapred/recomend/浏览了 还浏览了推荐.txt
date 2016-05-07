@@ -1,0 +1,44 @@
+T:
+uid1	pid1	date
+uid1	pid2	date
+uid1	pid1	date
+uid1	pid3	date
+uid1	pid2	date
+uid1	pid1	date
+uid1	pid2	date
+uid1	pid1	date
+uid1	pid3	date
+uid1	pid4	date
+uid2	pid1	date
+uid2	pid2	date
+uid2	pid1	date
+uid2	pid3	date
+uid2	pid2	date
+uid2	pid1	date
+uid2	pid2	date
+uid2	pid1	date
+uid2	pid3	date
+uid2	pid4	date
+
+select pid|uid,times from T group by pid|uid  -- pid|uid 组合Key ，分组求和，MapReduce实现。
+T1:
+pid1	uid1	times
+pid1	uid2	times
+pid2	uid1	times
+pid2	uid2	times
+
+select uid ,contact(sum(pid)) group by uid  -- 按uid 分组 ，相同pid 统计访问次数，拼接
+T2:
+uid1	pid1:4|pid2:3|pid3:2|pid4:1
+uid2	pid1:4|pid2:3|pid3:2|pid4:1
+
+T1 left join T2 as T3:   
+pid1	pid1:4|pid2:3|pid3:2|pid4:1
+pid1	pid1:4|pid2:3|pid3:2|pid4:1
+pid2	pid1:4|pid2:3|pid3:2|pid4:1
+pid2	pid1:4|pid2:3|pid3:2|pid4:1
+
+select sum(products) and remove(pid) and sort by times,pid from T3 group by pid -- 按pid分组，相同pid统计求和 去掉 与key 相同的pid。
+
+pid1	pid1:8|pid2:6|pid3:4|pid4:2
+pid2	pid1:8|pid2:6|pid3:4|pid4:2
